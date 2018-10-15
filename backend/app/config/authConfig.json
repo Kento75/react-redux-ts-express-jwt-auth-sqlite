@@ -1,0 +1,4 @@
+{
+   "secret": "1234567890asdfghjklzxcvbn",
+   "algorithm": "HS256"
+}

@@ -19,7 +19,8 @@ module.exports = (env, argv) => {
       ]
     },
     output: {
-      filename: isProduction ? "bundle.[chunkhash].js" : "[name].js",
+//      filename: isProduction ? "bundle.[chunkhash].js" : "[name].js",
+      filename: "[name].js",
       path: path.resolve(__dirname, "dist")
     },
     devtool: isProduction ? false : "source-map",
@@ -46,7 +47,8 @@ module.exports = (env, argv) => {
                 options: {
                   importLoaders: 2,
                   modules: true,
-                  localIdentName: "[name]-[local]-[hash:base64:5]",
+//                  localIdentName: "[name]-[local]-[hash:base64:5]",
+                  localIdentName: "[name]-[local]",
                   sourceMap: !isProduction,
                   minimize: isProduction
                 }
@@ -84,20 +86,10 @@ module.exports = (env, argv) => {
             loader: "url-loader",
             options: {
               limit: 200000,
-              name: isProduction ? "[name]-[hash].[ext]" : "[name].[ext]"
+//              name: isProduction ? "[name]-[hash].[ext]" : "[name].[ext]"
+              name: "[name].[ext]"
             }
           }]
-        }, {
-          test: /\.(png|jpg|gif)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                searchDir: "./assets",
-                outDir: "./dist/assets"
-              }
-            }
-          ]
         }
       ]
     },
@@ -113,7 +105,8 @@ module.exports = (env, argv) => {
         template: path.resolve(__dirname, "public/index.html"),
       }),
       new ExtractTextPlugin({
-        filename: isProduction ? "bundle.[chunkhash].css" : "[name].css",
+//        filename: isProduction ? "bundle.[chunkhash].css" : "[name].css",
+        filename: "[name].css",
         allChunks: true
       }),
     ]

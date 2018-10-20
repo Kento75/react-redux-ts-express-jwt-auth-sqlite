@@ -4,9 +4,9 @@ import * as ReactDOM from "react-dom"
 // tslint:disable-next-line
 import "semantic-ui-css/semantic.min.css"
 
-import { Hello } from "./components/Hello"
+import App from "./App/App"
 
 ReactDOM.render(
-  <Hello compiler="TypeScript" framework="React" />,
+  <App />,
   document.getElementById("root")
 )

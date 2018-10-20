@@ -84,12 +84,23 @@ module.exports = (env, argv) => {
               name: isProduction ? "[name]-[hash].[ext]" : "[name].[ext]"
             }
           }]
+        }, {
+          test: /\.(png|jpg|gif)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                searchDir: "./assets",
+                outDir: "./dist/assets"
+              }
+            }
+          ]
         }
       ]
     },
     plugins: [
       new htmlWebpackPlugin({
-        template: path.resolve(__dirname, "src/index.html"),
+        template: path.resolve(__dirname, "public/index.html"),
       }),
       new ExtractTextPlugin({
         filename: isProduction ? "bundle.[chunkhash].css" : "[name].css",

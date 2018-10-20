@@ -6,7 +6,7 @@
   "scripts": {
     "tcm": "tcm ./src -c -o ./typings",
     "prestart:dev": "npm run tcm",
-    "start:dev": "webpack-serve --host 0.0.0.0",
+    "start:dev": "webpack-serve --config webpack.config.js",
     "prebuild": "npm run tcm",
     "build": "NODE_ENV=production webpack",
     "prebuild:dev": "npm run tcm",
@@ -37,6 +37,8 @@
     "react-router-dom": "^4.1.2",
     "recompose": "^0.30.0",
     "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.82.5",
     "typescript-fsa": "^3.0.0-beta-2",
@@ -62,11 +64,13 @@
     "@types/react-test-renderer": "^16.0.1",
     "@types/recompose": "^0.27.0",
     "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.6",
     "@types/storybook__addon-actions": "^3.0.3",
     "@types/storybook__react": "^3.0.8",
     "autoprefixer": "^8.6.5",
     "awesome-typescript-loader": "^5.2.0",
     "babel-loader": "^8.0.4",
+    "connect-history-api-fallback": "^1.5.0",
     "core-js": "^2.5.7",
     "css-loader": "^1.0.0",
     "enzyme": "^3.3.0",
@@ -78,6 +82,7 @@
     "jest": "^23.3.0",
     "jest-css-modules-transform": "^2.0.0",
     "jest-puppeteer": "^3.2.1",
+    "koa-connect": "^2.0.1",
     "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.5",
     "prettier": "^1.13.7",
@@ -96,6 +101,6 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8",
-    "webpack-serve": "^2.0.1"
+    "webpack-serve": "^2.0.2"
   }
 }

@@ -4,6 +4,9 @@ const autoprefixer = require("autoprefixer");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+const history = require('connect-history-api-fallback');
+const convert = require('koa-connect');
+
 module.exports = (env, argv) => {
   const mode = process.env.NODE_ENV || "development";
   const isProduction = mode === "production";
@@ -97,6 +100,13 @@ module.exports = (env, argv) => {
           ]
         }
       ]
+    },
+    serve: {
+      content: path.resolve(__dirname, 'dist'),
+      port: 3000,
+      add: (app, middleware, options) => {
+        app.use(convert(history({ index: '/' })));
+      },
     },
     plugins: [
       new htmlWebpackPlugin({

@@ -1,18 +1,11 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore, Store } from "redux";
+import "normalize.css"
+import * as React from "react"
+import * as ReactDOM from "react-dom"
+import "semantic-ui-css/semantic.min.css"
 
-import todos from "./reducers/todos";
-import { Todos } from "./states/TodoState";
-
-import App from "./App";
-
-const store: Store<Todos> = createStore(todos, []);
+import { Hello } from "./components/Hello"
 
 ReactDOM.render(
-  <Provider store={ store }>
-    <App />
-  </Provider>,
-  document.getElementById("example"),
-);
+  <Hello compiler="TypeScript" framework="React" />,
+  document.getElementById("root")
+)

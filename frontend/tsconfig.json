@@ -1,14 +1,31 @@
 {
   "compilerOptions": {
-      "outDir": "./dist/",
-      "sourceMap": true,
-      "sourceRoot": "./tsx",
-      "noImplicitAny": true,
-      "module": "commonjs",
-      "target": "es5",
-      "jsx": "react"
+    "baseUrl": "src",
+    "rootDirs": ["src", "stories", "typings"],
+    "outDir": "dist",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es5", "es6", "es7", "es2018", "dom"],
+    "jsx": "react",
+    "allowJs": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "experimentalDecorators": true
   },
-  "include": [
-      "./src/**/*"
+  "include": ["./src/**/*"],
+  "exclude": [
+    "coverage",
+    "dist",
+    "node_modules",
+    "jest.config.js",
+    "jest.config.feature.js",
+    "jest-puppeteer.config.js",
+    "./src/setupTests.ts",
+    "./src/**/*.test.ts",
+    "./src/**/*.test.tsx",
+    "./feature/**/*.test.ts",
+    "./feature/**/*.test.tsx"
   ]
 }

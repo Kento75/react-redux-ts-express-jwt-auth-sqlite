@@ -1,0 +1,28 @@
+import { connect } from "react-redux";
+import { bindActionCreators, Dispatch } from "redux";
+
+import { IUserAction, login } from "../../actions/UserActions/UserActions";
+import LoginPage, { ILoginPageProps } from "../../components/LoginPage/LoginPage";
+import { IAuthenticationState } from "../../reducers/AuthenticationReducer";
+
+interface IStateProps {
+  user: {};
+  loggedIn: boolean;  
+}
+
+interface IDispatchProps {
+  login: (username: string, password: string) => void;
+}
+
+const mapStateToProps = (state: IAuthenticationState) => ({
+  user: state.user,
+  loggedIn: state.loggedIn
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<IUserAction>): IDispatchProps =>
+  bindActionCreators(
+    { login },
+    dispatch
+  );
+
+export default connect<IStateProps, IDispatchProps, ILoginPageProps>(mapStateToProps, mapDispatchToProps)(LoginPage);

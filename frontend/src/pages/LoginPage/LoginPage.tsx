@@ -6,27 +6,60 @@ import {
   Header,
   Image,
   Message,
-  Segment,
+  Segment
 } from "semantic-ui-react";
 
-interface ILoginPageState {
+import { IUserAction, userActions } from "../../actions/UserActions/UserActions";
+import { IAuthenticationState } from "../../reducers/AuthenticationReducer";
+
+export interface ILoginPageProps {
   username: string;
   password: string;
   submitted: boolean;
+  login?: () => void;
+  dispatch: any;
 }
 
-class LoginPage extends React.Component<{}, ILoginPageState> {
-  constructor(props: {}) {
+class LoginPage extends React.Component<ILoginPageProps, IAuthenticationState> {
+  constructor(props: any) {
     super(props);
 
+    // reset login status
+    // this.props.dispatch(userActions.logout());
+
     this.state = {
+      user: {},
       username: "",
       password: "",
+      loggedIn: false,
       submitted: false
     };
   }
 
+  public handleChange = (e: any) => {
+    const { name, value } = e.target;
+    if (name === "username") {
+      this.setState({ username: value })
+    } else {
+      this.setState({ password: value });
+    }
+  };
+
+  public handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    this.setState({ submitted: true });
+    const { username, password } = this.state;
+    const { dispatch } = this.props;
+    if (username && password) {
+      dispatch(userActions.login(username, password));
+    }
+  };
+
   public render() {
+//    const { loggingIn } = this.props;
+    const { username, password, submitted } = this.state;
+
     return (
     <div className="ui inverted vertical masthead center aligned segment">
     <Grid
@@ -51,7 +84,7 @@ class LoginPage extends React.Component<{}, ILoginPageState> {
         )}
         */}
         <br />
-        <Form size="large" name="form" onSubmit={null}>
+        <Form size="large" name="form" onSubmit={this.handleSubmit}>
           <Segment stacked>
             <Form.Input
               fluid
@@ -60,8 +93,8 @@ class LoginPage extends React.Component<{}, ILoginPageState> {
               placeholder="User Name"
               name="username"
               error={false}
-              value=""
-              onChange={null}
+              value={username}
+              onChange={this.handleChange}
             />
             <Form.Input
               fluid
@@ -71,8 +104,8 @@ class LoginPage extends React.Component<{}, ILoginPageState> {
               type="password"
               name="password"
               error={false} // あとで変更
-              value=""  // あとで変更
-              onChange={null}  // あとで変更
+              value={password}
+              onChange={this.handleChange}  // あとで変更
             />
             <Button color="teal" fluid size="large" disabled={false} loading={false}>
               Login

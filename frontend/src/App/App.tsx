@@ -2,7 +2,7 @@ import * as React from "react";
 import { Redirect, Route, Router } from "react-router-dom";
 
 import HomePage from "../components/HomePage/HomePage";
-import LoginPage from "../components/LoginPage/LoginPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
 
 // Private Router Component
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
